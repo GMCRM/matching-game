@@ -5,6 +5,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const matchCountEl = document.getElementById("matchCount");
   const totalPairsEl = document.getElementById("totalPairs");
   const matchProgressBar = document.getElementById("matchProgressBar");
+  const attemptCountEl = document.getElementById("attemptCount");
+  const attemptsProgressBar = document.getElementById("attemptsProgressBar");
   const fruitsAndVeggies = [
     "🍎",
     "🍌",
@@ -31,6 +33,7 @@ document.addEventListener("DOMContentLoaded", () => {
   let firstCard, secondCard;
   let lockBoard = false;
   let matches = 0;
+  let attempts = 0;
 
   function shuffle(array) {
     for (let i = array.length - 1; i > 0; i--) {
@@ -55,9 +58,12 @@ document.addEventListener("DOMContentLoaded", () => {
       gameBoard.appendChild(card);
     });
     matches = 0;
+    attempts = 0;
     matchCountEl.textContent = 0;
     totalPairsEl.textContent = cardArray.length / 2;
     matchProgressBar.style.height = "0%";
+    attemptCountEl.textContent = 0;
+    attemptsProgressBar.style.height = "0%";
     winNotification.style.display = "none"; // Hide win notification on restart
   }
 
@@ -74,6 +80,15 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     secondCard = this;
+    attempts++;
+    attemptCountEl.textContent = attempts;
+    // Fill bar: softly saturates toward 100% as attempts approach 2× total pairs
+    const maxAttempts = 60;
+    const pct = Math.min((attempts / maxAttempts) * 100, 100);
+    attemptsProgressBar.style.height = pct + "%";
+    attemptCountEl.classList.remove("pop");
+    void attemptCountEl.offsetWidth;
+    attemptCountEl.classList.add("pop");
     checkForMatch();
   }
 
