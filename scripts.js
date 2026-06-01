@@ -2,6 +2,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const gameBoard = document.getElementById('gameBoard');
     const restartButton = document.getElementById('restartButton');
     const winNotification = document.getElementById('winNotification');
+    const matchCountEl = document.getElementById('matchCount');
+    const totalPairsEl = document.getElementById('totalPairs');
+    const matchProgressBar = document.getElementById('matchProgressBar');
     const fruitsAndVeggies = [
         '🍎', '🍌', '🍇', '🍉', '🍓', '🍒', '🍍', '🥥', '🥭',
         '🥑', '🥕', '🍅', '🍆', '🥦', '🥒', '🌽', '🥬', '🍈'
@@ -36,6 +39,9 @@ document.addEventListener("DOMContentLoaded", () => {
             gameBoard.appendChild(card);
         });
         matches = 0;
+        matchCountEl.textContent = 0;
+        totalPairsEl.textContent = cardArray.length / 2;
+        matchProgressBar.style.height = '0%';
         winNotification.style.display = 'none'; // Hide win notification on restart
     }
 
@@ -65,6 +71,11 @@ document.addEventListener("DOMContentLoaded", () => {
         secondCard.removeEventListener('click', flipCard);
 
         matches += 2; // Two cards are matched
+        matchCountEl.textContent = matches / 2;
+        matchProgressBar.style.height = ((matches / cardArray.length) * 100) + '%';
+        matchCountEl.classList.remove('pop');
+        void matchCountEl.offsetWidth; // reflow to restart animation
+        matchCountEl.classList.add('pop');
 
         if (matches === cardArray.length) {
             winNotification.style.display = 'block'; // Show win notification

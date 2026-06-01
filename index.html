@@ -31,7 +31,21 @@
           <p class="rules-goal">Find all matching pairs to win the game!</p>
         </div>
       </header>
-      <div class="game-board" id="gameBoard"></div>
+      <div class="board-area">
+        <div class="game-board" id="gameBoard"></div>
+        <aside class="match-counter">
+          <div class="match-counter-icon">🎯</div>
+          <div class="match-label">Matches</div>
+          <div class="match-score">
+            <span id="matchCount">0</span>
+            <span class="match-divider">of</span>
+            <span id="totalPairs">0</span>
+          </div>
+          <div class="match-progress-wrap">
+            <div class="match-progress-bar" id="matchProgressBar"></div>
+          </div>
+        </aside>
+      </div>
       <button id="restartButton" class="restart-button">
         &#8635; Restart Game
       </button>
