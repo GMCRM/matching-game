@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const matchProgressBar = document.getElementById("matchProgressBar");
   const fruitsAndVeggies = [
     "🍎",
-    "",
+    "🍌",
     "🍇",
     "🍉",
     "🍓",
@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", () => {
     "🥥",
     "🥭",
     "🥑",
-    "",
+    "🥕",
     "🍅",
     "🍆",
     "🥦",
