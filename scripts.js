@@ -73,6 +73,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
     this.classList.add("flipped");
 
+    attempts++;
+    attemptCountEl.textContent = attempts;
+    const maxAttempts = 120;
+    const pct = Math.min((attempts / maxAttempts) * 100, 100);
+    attemptsProgressBar.style.height = pct + "%";
+    attemptCountEl.classList.remove("pop");
+    void attemptCountEl.offsetWidth;
+    attemptCountEl.classList.add("pop");
+
     if (!hasFlippedCard) {
       hasFlippedCard = true;
       firstCard = this;
@@ -80,15 +89,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     secondCard = this;
-    attempts++;
-    attemptCountEl.textContent = attempts;
-    // Fill bar: softly saturates toward 100% as attempts approach 2× total pairs
-    const maxAttempts = 60;
-    const pct = Math.min((attempts / maxAttempts) * 100, 100);
-    attemptsProgressBar.style.height = pct + "%";
-    attemptCountEl.classList.remove("pop");
-    void attemptCountEl.offsetWidth;
-    attemptCountEl.classList.add("pop");
     checkForMatch();
   }
 
